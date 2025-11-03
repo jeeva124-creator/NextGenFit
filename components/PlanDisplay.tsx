@@ -297,7 +297,7 @@ export function PlanDisplay({
                         key={idx}
                         className="p-4 bg-slate-600 rounded-lg border-l-4 border-purple-500"
                       >
-                        <p className="text-slate-300 italic">"{quote}"</p>
+                        <p className="text-slate-300 italic">{quote}</p>
                       </div>
                     ))}
                   </div>
