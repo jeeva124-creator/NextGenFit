@@ -5,31 +5,22 @@ import { UserData } from "@/types";
  * Designed to prevent truncation and parsing errors.
  */
 export function generatePlanPrompt(userData: UserData): string {
-  return `You are an expert fitness coach and nutritionist. Create a short, valid JSON fitness plan for the user below.
+  return `You are an expert fitness coach. Create a COMPACT, valid JSON fitness plan.
 
-User Details:
-- Name: ${userData.name}
-- Age: ${userData.age}
-- Gender: ${userData.gender}
-- Height: ${userData.height} cm
-- Weight: ${userData.weight} kg
-- Fitness Goal: ${userData.fitnessGoal}
-- Fitness Level: ${userData.fitnessLevel}
-- Workout Location: ${userData.workoutLocation}
-- Dietary Preferences: ${userData.dietaryPreferences}
-${userData.medicalHistory ? `- Medical History: ${userData.medicalHistory}` : ""}
-${userData.stressLevel ? `- Stress Level: ${userData.stressLevel}` : ""}
+User: ${userData.name}, ${userData.age}y, ${userData.gender}, ${userData.height}cm, ${userData.weight}kg
+Goal: ${userData.fitnessGoal} | Level: ${userData.fitnessLevel} | Location: ${userData.workoutLocation}
+Diet: ${userData.dietaryPreferences}${userData.medicalHistory ? ` | Medical: ${userData.medicalHistory}` : ""}
 
-Return ONLY valid JSON in this exact structure (no markdown, no text outside JSON):
+Return ONLY valid JSON (no markdown, no extra text). Use this EXACT structure:
 
 {
   "workoutPlan": [
     {
-      "day": "Day 1 - Monday",
+      "day": "Day 1",
       "exercises": [
-        { "name": "Exercise", "sets": 3, "reps": "10-12", "restTime": "60s", "description": "Short tip" }
+        { "name": "Exercise Name", "sets": 3, "reps": "10-12", "restTime": "60s", "description": "Brief tip" }
       ],
-      "duration": "45 min"
+      "duration": "30 min"
     }
   ],
   "dietPlan": {
@@ -40,19 +31,18 @@ Return ONLY valid JSON in this exact structure (no markdown, no text outside JSO
   },
   "tips": {
     "tips": ["Tip 1", "Tip 2"],
-    "motivation": ["Quote 1"],
-    "lifestyleAdvice": ["Advice 1"]
+    "motivation": ["Quote"],
+    "lifestyleAdvice": ["Advice"]
   }
 }
 
-STRICT RULES (MUST FOLLOW):
-- Output MUST be valid JSON only (no markdown, no text before/after)
-- Maximum 3 workout days (keep it short)
-- Maximum 3 exercises per day
-- Exercise descriptions: MAX 8 words each (be very brief)
-- No long text anywhere - keep everything concise
-- Start with { and end with }
-- Validate all commas and brackets are correct`;
+CRITICAL RULES:
+- Output valid JSON ONLY (start with {, end with })
+- MAX 2 workout days
+- MAX 3 exercises per day
+- Descriptions MAX 5 words
+- Keep ALL text short
+- Verify JSON syntax before responding`;
 }
 
 /**
