@@ -38,14 +38,7 @@ Using **Replicate API**, users can view AI-generated images for:
 
 ## 🧩 Tech Stack
 
-| Layer | Technology |
-|-------|-------------|
-| **Frontend** | Next.js 14 (App Router) |
-| **LLM (Text)** | Gemini API |
-| **Image Generation** | Replicate API |
-| **Voice (Optional)** | ElevenLabs API |
-| **Styling** | Tailwind CSS + Framer Motion |
-| **Auth / DB (Optional)** | NextAuth.js + MongoDB / PostgreSQL |
+
 
 ---
 
